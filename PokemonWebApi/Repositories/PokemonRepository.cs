@@ -1,8 +1,4 @@
-﻿using PokemonWebApi.Data;
-using PokemonWebApi.Interfaces;
-using PokemonWebApi.Models;
-
-namespace PokemonWebApi.Repositories
+﻿namespace PokemonWebApi.Repositories
 {
     public class PokemonRepository : IPokemonRepository
     {
@@ -71,6 +67,12 @@ namespace PokemonWebApi.Repositories
         {
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
+        }
+
+        public bool UpdatePokemon(int ownerId, int categoryId, Pokemon pokemon)
+        {
+            _context.Update(pokemon);
+            return Save();
         }
     }
 }
